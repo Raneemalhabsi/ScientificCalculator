@@ -47,6 +47,9 @@ public class ScientificCalculator {
                 case 9:
                     performTangent(scanner);
                     break;
+                case 10:
+                    performNaturalLog(scanner);
+                    break;
                 case 0:
                     running = false;
                     System.out.println("Exiting calculator. Goodbye!");
@@ -70,6 +73,7 @@ public class ScientificCalculator {
         System.out.println("7. Sine (in degrees)");
         System.out.println("8. Cosine (in degrees)");
         System.out.println("9. Tangent (in degrees)");
+        System.out.println("10. Natural Logarithm");
         System.out.println("0. Exit");
     }
 
@@ -115,6 +119,13 @@ public class ScientificCalculator {
         double radians = Math.toRadians(degrees);
         return Math.tan(radians);
     }
+    public static double naturalLog(double num) throws ArithmeticException {
+        if (num <= 0) {
+            throw new ArithmeticException("Natural logarithm is undefined for zero or negative numbers.");
+        }
+        return Math.log(num); // Math.log() is ln in Java
+    }
+
 
 
 
@@ -252,6 +263,21 @@ public class ScientificCalculator {
             System.out.println("Math error: " + e.getMessage());
         }
     }
+    private static void performNaturalLog(Scanner scanner) {
+        try {
+            System.out.print("Enter a positive number: ");
+            double num = scanner.nextDouble();
+
+            double result = naturalLog(num);
+            System.out.println("Result (ln(" + num + ")): " + result);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Please enter a numeric value.");
+            scanner.nextLine(); // clear buffer
+        } catch (ArithmeticException e) {
+            System.out.println("Math error: " + e.getMessage());
+        }
+    }
+
 
 
 
