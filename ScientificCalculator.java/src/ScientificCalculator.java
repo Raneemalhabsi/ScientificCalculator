@@ -35,6 +35,10 @@ public class ScientificCalculator {
                 case 5:
                     performSquareRoot(scanner);
                     break;
+                case 6:
+                    performPower(scanner);
+                    break;
+
                 case 0:
                     running = false;
                     System.out.println("Exiting calculator. Goodbye!");
@@ -54,6 +58,7 @@ public class ScientificCalculator {
         System.out.println("3. Multiplication");
         System.out.println("4. Division");
         System.out.println("5. Square Root");
+        System.out.println("6. Power (x^y)");
         System.out.println("0. Exit");
     }
 
@@ -79,6 +84,10 @@ public class ScientificCalculator {
         }
         return Math.sqrt(num);
     }
+    public static double power(double base, double exponent) {
+        return Math.pow(base, exponent);
+    }
+
 
 
 
@@ -160,6 +169,22 @@ public class ScientificCalculator {
             System.out.println("Math error: " + e.getMessage());
         }
     }
+    private static void performPower(Scanner scanner) {
+        try {
+            System.out.print("Enter the base: ");
+            double base = scanner.nextDouble();
+
+            System.out.print("Enter the exponent: ");
+            double exponent = scanner.nextDouble();
+
+            double result = power(base, exponent);
+            System.out.println("Result: " + result);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Please enter numeric values.");
+            scanner.nextLine(); // clear buffer
+        }
+    }
+
 
 
 }
