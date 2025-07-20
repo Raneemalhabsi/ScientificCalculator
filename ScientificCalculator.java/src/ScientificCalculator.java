@@ -23,6 +23,9 @@ public class ScientificCalculator {
                 case 1:
                     performAddition(scanner);
                     break;
+                case 2:
+                    performSubtraction(scanner);
+                    break;
                 case 0:
                     running = false;
                     System.out.println("Exiting calculator. Goodbye!");
@@ -38,12 +41,18 @@ public class ScientificCalculator {
     public static void displayMenu() {
         System.out.println("\n=== SCIENTIFIC CALCULATOR MENU ===");
         System.out.println("1. Addition");
+        System.out.println("2. Subtraction");  // <-- Added option 2
         System.out.println("0. Exit");
     }
+
 
     public static double add(double num1, double num2) {
         return num1 + num2;
     }
+    public static double subtract(double num1, double num2) {
+        return num1 - num2;
+    }
+
 
     private static void performAddition(Scanner scanner) {
         try {
@@ -60,4 +69,20 @@ public class ScientificCalculator {
             scanner.nextLine();
         }
     }
+    private static void performSubtraction(Scanner scanner) {
+        try {
+            System.out.print("Enter first number: ");
+            double a = scanner.nextDouble();
+
+            System.out.print("Enter second number: ");
+            double b = scanner.nextDouble();
+
+            double result = subtract(a, b);
+            System.out.println("Result: " + result);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Please enter numeric values.");
+            scanner.nextLine();
+        }
+    }
 }
+
