@@ -32,6 +32,9 @@ public class ScientificCalculator {
                 case 4:
                     performDivision(scanner);
                     break;
+                case 5:
+                    performSquareRoot(scanner);
+                    break;
                 case 0:
                     running = false;
                     System.out.println("Exiting calculator. Goodbye!");
@@ -50,6 +53,7 @@ public class ScientificCalculator {
         System.out.println("2. Subtraction");
         System.out.println("3. Multiplication");
         System.out.println("4. Division");
+        System.out.println("5. Square Root");
         System.out.println("0. Exit");
     }
 
@@ -69,6 +73,13 @@ public class ScientificCalculator {
         }
         return num1 / num2;
     }
+    public static double squareRoot(double num) throws ArithmeticException {
+        if (num < 0) {
+            throw new ArithmeticException("Cannot calculate square root of a negative number.");
+        }
+        return Math.sqrt(num);
+    }
+
 
 
 
@@ -130,6 +141,20 @@ public class ScientificCalculator {
             System.out.println("Result: " + result);
         } catch (InputMismatchException e) {
             System.out.println("Invalid input! Please enter numeric values.");
+            scanner.nextLine(); // clear buffer
+        } catch (ArithmeticException e) {
+            System.out.println("Math error: " + e.getMessage());
+        }
+    }
+    private static void performSquareRoot(Scanner scanner) {
+        try {
+            System.out.print("Enter a number: ");
+            double num = scanner.nextDouble();
+
+            double result = squareRoot(num);
+            System.out.println("Result: " + result);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Please enter a numeric value.");
             scanner.nextLine(); // clear buffer
         } catch (ArithmeticException e) {
             System.out.println("Math error: " + e.getMessage());
