@@ -50,6 +50,9 @@ public class ScientificCalculator {
                 case 10:
                     performNaturalLog(scanner);
                     break;
+                case 11:
+                    performLogBase10(scanner);
+                    break;
                 case 0:
                     running = false;
                     System.out.println("Exiting calculator. Goodbye!");
@@ -74,6 +77,7 @@ public class ScientificCalculator {
         System.out.println("8. Cosine (in degrees)");
         System.out.println("9. Tangent (in degrees)");
         System.out.println("10. Natural Logarithm");
+        System.out.println("11. Base-10 Logarithm (log₁₀)");
         System.out.println("0. Exit");
     }
 
@@ -125,6 +129,13 @@ public class ScientificCalculator {
         }
         return Math.log(num); // Math.log() is ln in Java
     }
+    public static double logBase10(double num) throws ArithmeticException {
+        if (num <= 0) {
+            throw new ArithmeticException("Base-10 logarithm is undefined for zero or negative numbers.");
+        }
+        return Math.log10(num); // Math.log10() gives log base 10
+    }
+
 
 
 
@@ -277,6 +288,21 @@ public class ScientificCalculator {
             System.out.println("Math error: " + e.getMessage());
         }
     }
+    private static void performLogBase10(Scanner scanner) {
+        try {
+            System.out.print("Enter a positive number: ");
+            double num = scanner.nextDouble();
+
+            double result = logBase10(num);
+            System.out.println("Result (log₁₀(" + num + ")): " + result);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Please enter a numeric value.");
+            scanner.nextLine(); // clear buffer
+        } catch (ArithmeticException e) {
+            System.out.println("Math error: " + e.getMessage());
+        }
+    }
+
 
 
 
