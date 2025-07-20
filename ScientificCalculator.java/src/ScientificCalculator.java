@@ -53,6 +53,9 @@ public class ScientificCalculator {
                 case 11:
                     performLogBase10(scanner);
                     break;
+                case 12:
+                    performAbsoluteValue(scanner);
+                    break;
                 case 0:
                     running = false;
                     System.out.println("Exiting calculator. Goodbye!");
@@ -78,6 +81,7 @@ public class ScientificCalculator {
         System.out.println("9. Tangent (in degrees)");
         System.out.println("10. Natural Logarithm");
         System.out.println("11. Base-10 Logarithm (log₁₀)");
+        System.out.println("12. Absolute Value");
         System.out.println("0. Exit");
     }
 
@@ -135,6 +139,10 @@ public class ScientificCalculator {
         }
         return Math.log10(num); // Math.log10() gives log base 10
     }
+    public static double absoluteValue(double num) {
+        return Math.abs(num);
+    }
+
 
 
 
@@ -302,6 +310,19 @@ public class ScientificCalculator {
             System.out.println("Math error: " + e.getMessage());
         }
     }
+    private static void performAbsoluteValue(Scanner scanner) {
+        try {
+            System.out.print("Enter a number: ");
+            double num = scanner.nextDouble();
+
+            double result = absoluteValue(num);
+            System.out.println("Result (|"+ num + "|): " + result);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Please enter a numeric value.");
+            scanner.nextLine(); // clear buffer
+        }
+    }
+
 
 
 
