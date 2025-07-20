@@ -44,6 +44,9 @@ public class ScientificCalculator {
                 case 8:
                     performCosine(scanner);
                     break;
+                case 9:
+                    performTangent(scanner);
+                    break;
                 case 0:
                     running = false;
                     System.out.println("Exiting calculator. Goodbye!");
@@ -66,6 +69,7 @@ public class ScientificCalculator {
         System.out.println("6. Power (x^y)");
         System.out.println("7. Sine (in degrees)");
         System.out.println("8. Cosine (in degrees)");
+        System.out.println("9. Tangent (in degrees)");
         System.out.println("0. Exit");
     }
 
@@ -102,6 +106,16 @@ public class ScientificCalculator {
         double radians = Math.toRadians(degrees);  // Convert degrees to radians
         return Math.cos(radians);
     }
+    public static double tangent(double degrees) throws ArithmeticException {
+        // Tangent is undefined at 90°, 270°, etc. (odd multiples of 90 where cos = 0)
+        double angleMod = degrees % 180;
+        if (angleMod == 90 || angleMod == -90) {
+            throw new ArithmeticException("Tangent is undefined at " + degrees + "°.");
+        }
+        double radians = Math.toRadians(degrees);
+        return Math.tan(radians);
+    }
+
 
 
 
@@ -224,6 +238,21 @@ public class ScientificCalculator {
             scanner.nextLine(); // clear buffer
         }
     }
+    private static void performTangent(Scanner scanner) {
+        try {
+            System.out.print("Enter angle in degrees: ");
+            double degrees = scanner.nextDouble();
+
+            double result = tangent(degrees);
+            System.out.println("Result (tan(" + degrees + "°)): " + result);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Please enter a numeric value.");
+            scanner.nextLine(); // clear buffer
+        } catch (ArithmeticException e) {
+            System.out.println("Math error: " + e.getMessage());
+        }
+    }
+
 
 
 
